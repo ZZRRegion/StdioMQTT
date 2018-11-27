@@ -1,0 +1,13 @@
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\bin\Debug\StdioMQTT.exe.config
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\bin\Debug\StdioMQTT.exe
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\bin\Debug\StdioMQTT.pdb
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\obj\Debug\StdioMQTT.csprojAssemblyReference.cache
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\obj\Debug\StdioMQTT.FrmMain.resources
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\obj\Debug\StdioMQTT.Properties.Resources.resources
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\obj\Debug\StdioMQTT.csproj.GenerateResource.cache
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\obj\Debug\StdioMQTT.csproj.CoreCompileInputs.cache
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\obj\Debug\StdioMQTT.exe
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\obj\Debug\StdioMQTT.pdb
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\bin\Debug\M2Mqtt.Net.dll
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\bin\Debug\M2Mqtt.Net.pdb
+c:\users\administrator\source\repos\StdioMQTT\StdioMQTT\obj\Debug\StdioMQTT.csproj.CopyComplete
