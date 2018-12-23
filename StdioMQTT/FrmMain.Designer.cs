@@ -38,6 +38,7 @@
             this.txtSubscribe = new System.Windows.Forms.TextBox();
             this.lblSubscribeTopic = new System.Windows.Forms.Label();
             this.grpPublish = new System.Windows.Forms.GroupBox();
+            this.cboPublick = new System.Windows.Forms.CheckBox();
             this.btnSendPublish = new System.Windows.Forms.Button();
             this.rtbSendPublish = new System.Windows.Forms.RichTextBox();
             this.lblContent = new System.Windows.Forms.Label();
@@ -45,10 +46,10 @@
             this.txtPublishTopic = new System.Windows.Forms.TextBox();
             this.grpRecive = new System.Windows.Forms.GroupBox();
             this.rtbRecive = new System.Windows.Forms.RichTextBox();
-            this.lblClientId = new System.Windows.Forms.Label();
-            this.txtClientId = new System.Windows.Forms.TextBox();
             this.pnlBot = new System.Windows.Forms.Panel();
             this.btnClear = new System.Windows.Forms.Button();
+            this.lblClientId = new System.Windows.Forms.Label();
+            this.txtClientId = new System.Windows.Forms.TextBox();
             this.pnlTop = new System.Windows.Forms.Panel();
             this.grpSubscribe.SuspendLayout();
             this.grpPublish.SuspendLayout();
@@ -122,6 +123,7 @@
             this.txtSubscribe.Name = "txtSubscribe";
             this.txtSubscribe.Size = new System.Drawing.Size(245, 21);
             this.txtSubscribe.TabIndex = 1;
+            this.txtSubscribe.Text = "sf";
             // 
             // lblSubscribeTopic
             // 
@@ -134,6 +136,7 @@
             // 
             // grpPublish
             // 
+            this.grpPublish.Controls.Add(this.cboPublick);
             this.grpPublish.Controls.Add(this.btnSendPublish);
             this.grpPublish.Controls.Add(this.rtbSendPublish);
             this.grpPublish.Controls.Add(this.lblContent);
@@ -145,6 +148,17 @@
             this.grpPublish.TabIndex = 4;
             this.grpPublish.TabStop = false;
             this.grpPublish.Text = "发布";
+            // 
+            // cboPublick
+            // 
+            this.cboPublick.AutoSize = true;
+            this.cboPublick.Location = new System.Drawing.Point(97, 323);
+            this.cboPublick.Name = "cboPublick";
+            this.cboPublick.Size = new System.Drawing.Size(72, 16);
+            this.cboPublick.TabIndex = 5;
+            this.cboPublick.Text = "持续发布";
+            this.cboPublick.UseVisualStyleBackColor = true;
+            this.cboPublick.CheckedChanged += new System.EventHandler(this.cboPublick_CheckedChanged);
             // 
             // btnSendPublish
             // 
@@ -162,7 +176,7 @@
             this.rtbSendPublish.Name = "rtbSendPublish";
             this.rtbSendPublish.Size = new System.Drawing.Size(245, 203);
             this.rtbSendPublish.TabIndex = 3;
-            this.rtbSendPublish.Text = "";
+            this.rtbSendPublish.Text = "sfsdfsdf";
             // 
             // lblContent
             // 
@@ -188,6 +202,7 @@
             this.txtPublishTopic.Name = "txtPublishTopic";
             this.txtPublishTopic.Size = new System.Drawing.Size(245, 21);
             this.txtPublishTopic.TabIndex = 0;
+            this.txtPublishTopic.Text = "sf";
             // 
             // grpRecive
             // 
@@ -209,22 +224,6 @@
             this.rtbRecive.TabIndex = 0;
             this.rtbRecive.Text = "";
             // 
-            // lblClientId
-            // 
-            this.lblClientId.AutoSize = true;
-            this.lblClientId.Location = new System.Drawing.Point(34, 49);
-            this.lblClientId.Name = "lblClientId";
-            this.lblClientId.Size = new System.Drawing.Size(65, 12);
-            this.lblClientId.TabIndex = 6;
-            this.lblClientId.Text = "客户端ID：";
-            // 
-            // txtClientId
-            // 
-            this.txtClientId.Location = new System.Drawing.Point(110, 45);
-            this.txtClientId.Name = "txtClientId";
-            this.txtClientId.Size = new System.Drawing.Size(239, 21);
-            this.txtClientId.TabIndex = 7;
-            // 
             // pnlBot
             // 
             this.pnlBot.Controls.Add(this.btnClear);
@@ -243,6 +242,22 @@
             this.btnClear.Text = "清空";
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // lblClientId
+            // 
+            this.lblClientId.AutoSize = true;
+            this.lblClientId.Location = new System.Drawing.Point(34, 49);
+            this.lblClientId.Name = "lblClientId";
+            this.lblClientId.Size = new System.Drawing.Size(65, 12);
+            this.lblClientId.TabIndex = 6;
+            this.lblClientId.Text = "客户端ID：";
+            // 
+            // txtClientId
+            // 
+            this.txtClientId.Location = new System.Drawing.Point(110, 45);
+            this.txtClientId.Name = "txtClientId";
+            this.txtClientId.Size = new System.Drawing.Size(239, 21);
+            this.txtClientId.TabIndex = 7;
             // 
             // pnlTop
             // 
@@ -276,6 +291,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MQTT客户端";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmMain_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.grpSubscribe.ResumeLayout(false);
             this.grpSubscribe.PerformLayout();
@@ -311,6 +327,7 @@
         private System.Windows.Forms.Panel pnlBot;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Panel pnlTop;
+        private System.Windows.Forms.CheckBox cboPublick;
     }
 }
 

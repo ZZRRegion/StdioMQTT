@@ -16,6 +16,7 @@ namespace StdioMQTT
     public partial class FrmMain : Form
     {
         private MqttClient mqttClient;
+        private bool IsStop { get; set; } = true;
         public FrmMain()
         {
             InitializeComponent();
@@ -24,6 +25,9 @@ namespace StdioMQTT
         private void FrmMain_Load(object sender, EventArgs e)
         {
             this.txtClientId.Text = Guid.NewGuid().ToString();
+            Task.Run(() => {
+                this.timer1_Tick();
+            });
         }
 
         private void btnConnect_Click(object sender, EventArgs e)
@@ -85,22 +89,24 @@ namespace StdioMQTT
 
         private void MqttClient_MqttMsgPublishReceived(object sender, MqttMsgPublishEventArgs e)
         {
+            if (this.Disposing)
+                return;
             byte[] bys = e.Message;
             string content = Encoding.UTF8.GetString(bys);
             string topic = e.Topic;
             bool dupFlag = e.DupFlag;
             byte qosLevel = e.QosLevel;
             bool retain = e.Retain;
-            Action action = () => {
+            Action action = () =>
+            {
                 this.rtbRecive.AppendText($"接收时间：{DateTime.Now}{Environment.NewLine}");
                 this.rtbRecive.AppendText($"主题：{topic}{Environment.NewLine}");
                 this.rtbRecive.AppendText($"内容：{content}{Environment.NewLine}");
-                this.rtbRecive.Focus();
+                //this.rtbRecive.Focus();
                 this.rtbRecive.Select(this.rtbRecive.TextLength, 0);
                 this.rtbRecive.ScrollToCaret();
             };
-            this.Invoke(action);
-            
+            this.BeginInvoke(action);
         }
 
         private void MqttClient_MqttMsgPublished(object sender, MqttMsgPublishedEventArgs e)
@@ -130,8 +136,8 @@ namespace StdioMQTT
 
         private void FrmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.mqttClient?.Disconnect();
-            this.mqttClient.ConnectionClosed -= this.MqttClient_ConnectionClosed;
+            
+           
         }
 
         private void btnSendPublish_Click(object sender, EventArgs e)
@@ -156,6 +162,41 @@ namespace StdioMQTT
             if(subscribeModel != null)
             {
                 subscribeModel.Unsubscribe(this.mqttClient);
+            }
+        }
+
+        private void cboPublick_CheckedChanged(object sender, EventArgs e)
+        {
+            this.IsStop = !this.cboPublick.Checked;
+        }
+
+        private void timer1_Tick()
+        {
+            while (true)
+            {
+                if (!this.IsStop && this.mqttClient != null && this.mqttClient.IsConnected)
+                {
+                    Action action = () => {
+                        string topic = this.txtPublishTopic.Text;
+                        string content = this.rtbSendPublish.Text;
+                        if (!string.IsNullOrEmpty(topic) && !string.IsNullOrEmpty(content))
+                        {
+                            byte[] bys = Encoding.UTF8.GetBytes(content);
+                            ushort? publishId = this.mqttClient?.Publish(topic, bys, MqttMsgBase.QOS_LEVEL_AT_LEAST_ONCE, true);
+                        }
+                    };
+                    this.BeginInvoke(action);
+                    Thread.Sleep(100);
+                }
+            }
+        }
+
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.IsStop = true;
+            if (this.mqttClient != null)
+            {
+                this.mqttClient?.Disconnect();
             }
         }
     }
